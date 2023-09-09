@@ -32,7 +32,7 @@ export default function Medicines(props) {
                 setMedicine({ ...props.medicineEditing });
 
                 if (!window.confirm('Deseja adicionar mais alguma medicação? Clique OK pra SIM, CANCEL pra NÃO')) {
-                    window.location.href = '/cadastroPacientes'
+                    window.location.href = 'https://back-fsii.vercel.app/cadastroPacientes'
                 }
             }
             return await response.json()
