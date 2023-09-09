@@ -1,0 +1,189 @@
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import ReactInputMask from "react-input-mask";
+
+const boxcad_style = {
+  padding: '2px',
+  borderRadius: '10px',
+  border: '2px solid black',
+  width: '380px',
+}
+
+const boxcadall_style = {
+  padding: '5px',
+  borderRadius: '10px',
+  border: '3px solid black',
+  height: '610px'
+}
+
+export default function FormVisitante(props) {
+  const [validated, setValidated] = useState(false);
+  const [visitante, setVisitante] = useState({
+    nome: "",
+    sobrenome: "",
+    cpf: "",
+    rg: "",
+    codigo: "",
+    telefone: "",
+    data: "",
+    observacao: ""
+  });
+
+  function manipularMudanca(e) {
+    const elemForm = e.currentTarget;
+    const id = elemForm.id;
+    const valor = elemForm.value;
+    setVisitante({ ...visitante, [id]: valor });
+
+  }
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    else {
+      let visitantes = props.listaVisitantes;
+      visitantes.push(visitante);
+      props.setVisitantes(visitantes);
+
+      props.exibirTabela(true);
+      alert('Visitante cadastrado com sucesso!')
+    }
+    setValidated(true);
+  };
+
+
+
+  return (
+    <Form className='mt-5' id='cadastroVisitas' noValidate validated={validated} onSubmit={handleSubmit} style={boxcadall_style}>
+      <hr />
+      <div className='d-flex justify-content-center'><Form.Label className="fs-3 justify-content-center d-flex" style={boxcad_style}>Cadastro de Visitantes</Form.Label></div>
+      <hr />
+      <Row className="mb-3">
+        <Form.Group as={Col} md="6">
+          <Form.Label>Nome</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            value={visitante.nome}
+            id="nome"
+            onChange={manipularMudanca}
+          />
+          <Form.Control.Feedback type="invalid">
+            Insira um nome
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="6">
+          <Form.Label>Sobrenome</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            value={visitante.sobrenome}
+            id="sobrenome"
+            onChange={manipularMudanca}
+          />
+          <Form.Control.Feedback type="invalid">
+            Insira um sobrenome
+          </Form.Control.Feedback>
+        </Form.Group>
+      </Row>
+      <Row className="mb-3">
+        <Form.Group as={Col} md="4">
+          <Form.Label>CPF</Form.Label>
+          <ReactInputMask mask="999.999.999-99" maskChar="" value={visitante.cpf} onChange={manipularMudanca}>
+            {() => <Form.Control type="text"
+              placeholder="000.000.000-00"
+              required
+              id="cpf" />}
+          </ReactInputMask>
+          <Form.Control.Feedback type="invalid">
+            Informe um CPF válido!
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="4">
+          <Form.Label>RG</Form.Label>
+          <Form.Control type="text"
+            value={visitante.rg}
+            required
+            id="rg"
+            onChange={manipularMudanca} />
+          <Form.Control.Feedback type="invalid">
+            Informe o RG!
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="4">
+          <Form.Label>Código</Form.Label>
+          <ReactInputMask mask="9999" maskChar="" value={visitante.codigo} onChange={manipularMudanca}>
+            {() => <Form.Control type="text"
+              placeholder="0000"
+              required
+              min="0"
+              id="codigo" />}
+          </ReactInputMask>
+          <Form.Control.Feedback type="invalid">
+            Informe o código do visitante!
+          </Form.Control.Feedback>
+        </Form.Group>
+      </Row>
+      <Row className="mb-3">
+        <Form.Group as={Col} md="5">
+          <Form.Label>Telefone</Form.Label>
+          <ReactInputMask mask='(99) 99999-9999' maskChar="" value={visitante.telefone} onChange={manipularMudanca}>
+            {() => <Form.Control type="text"
+              placeholder="(00) 00000-0000"
+              required
+              min="0"
+              id="telefone" />}
+          </ReactInputMask>
+          <Form.Control.Feedback type="invalid">
+            Informe o telefone!
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="4">
+          <Form.Label>Data</Form.Label>
+          <Form.Control type="date"
+            placeholder="00/00/0000"
+            required
+            value={visitante.data}
+            id="data"
+            onChange={manipularMudanca} />
+          <Form.Control.Feedback type="invalid">
+            Informe uma data válida!
+          </Form.Control.Feedback>
+        </Form.Group>
+      </Row>
+      <Row className="mb-3">
+        <Form.Group as={Col} md="12">
+          <Form.Label>Observações</Form.Label>
+          <Form.Control as="textarea"
+            rows={3}
+            placeholder="Observações do visitante se necessário, caso não tenha deixar em branco"
+            value={visitante.observacao}
+            id="observacao"
+            onChange={manipularMudanca} />
+        </Form.Group>
+      </Row>
+      <Form.Group className="mb-3">
+        <Form.Check
+          required
+          label="Aceito os termos e condições"
+          feedback="É necessário aceitar os termos para prosseguir"
+          feedbackType="invalid"
+        />
+      </Form.Group>
+      <Row className="m-3">
+        <Col md="10">
+          <Button variant="secondary" type="button" onClick={() => { props.exibirTabela(true)}}>Voltar</Button>
+        </Col>
+        <Col md="1">
+          <Button type="submit" md={{ offset: 5 }}>Cadastrar</Button>
+        </Col>
+      </Row>
+    </Form>
+  );
+}
