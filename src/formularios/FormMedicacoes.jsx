@@ -32,7 +32,8 @@ export default function Medicines(props) {
                 setMedicine({ ...props.medicineEditing });
 
                 if (!window.confirm('Deseja adicionar mais alguma medicação? Clique OK pra SIM, CANCEL pra NÃO')) {
-                    window.location.href = 'https://vocal-granita-13bfe9.netlify.app/cadastroPacientes'
+                    window.location.href = 'https://vocal-granita-13bfe9.netlify.app';
+                    window.location.href = 'https://vocal-granita-13bfe9.netlify.appcadastroPacientes'
                 }
             }
             return await response.json()
