@@ -5,25 +5,23 @@ function SelectionBox({ source, dataKey, exhibitionField, selectFunction }) {
   const [selectedValue, setSelectedValue] = useState("");
   const [data, setData] = useState([]);
 
-
+  function filterAndCapitalizeName(array) {
+    return array.filter((item, index, self) => {
+      return self.findIndex((el) => el.name === item.name) === index
+    });
+  }
 
   useEffect(() => {
-
-    function filterOnlyOneName(array) {
-      return array.filter((item, index, self) => { return self.findIndex((el) => el.name === item.name) === index })
-
-    }
 
     const fetchData = async () => {
       let response = await fetch(source, { method: "GET" })
       let result = await response.json();
-      let newList = filterOnlyOneName(result)
+      let newList = filterAndCapitalizeName(result)
       setData(newList)
-      console.log(newList, data)
+
     }
 
     fetchData()
-
   }, [source])
 
 
@@ -36,13 +34,23 @@ function SelectionBox({ source, dataKey, exhibitionField, selectFunction }) {
       <Row md={12}>
         <Col>
           <Form.Select
+            defaultValue={''}
+            required
             value={selectedValue}
-            onChange={(e) => setSelectedValue(e.target.value)}
+            onChange={(e) => {
+              setSelectedValue(e.target.value);
+              selectFunction(e.target.value);
+            }}
           >
+            <option value={''}>Selecione uma opção</option>
             {data.map((item) => (
-              <option value={item[exhibitionField]}
-                onClick={()=>{selectFunction(item[exhibitionField])}}
-                key={item[dataKey]}>{item[exhibitionField]}</option>
+              <option
+                value={item[exhibitionField].charAt(0).toUpperCase() + item[exhibitionField].slice(1)}
+                key={item[dataKey]}
+                defaultValue={"Selecione um medicamento"}
+              >
+                {item[exhibitionField].charAt(0).toUpperCase() + item[exhibitionField].slice(1)}
+              </option>
             ))}
           </Form.Select>
         </Col>
