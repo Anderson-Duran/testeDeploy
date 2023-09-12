@@ -214,7 +214,7 @@ export default function Medicines(props) {
 
                 <Row className="mb-5 flex bg-red justify-content-end me-2">
                     <Button className="btn" style={{ width: "100px", marginRight: '15px' }} type="submit" variant="primary">Cadastrar</Button>
-                    <Button className="btn" style={{ width: "100px" }} variant="primary">Voltar</Button>
+                    <Button className="btn" style={{ width: "100px" }} onClick={()=>{navigate('/')}} variant="primary">Voltar</Button>
                 </Row>
             </Form>
         </Container>
