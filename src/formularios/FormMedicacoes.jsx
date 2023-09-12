@@ -4,12 +4,13 @@ import { Container, Form, Row, Col, FloatingLabel, Button } from "react-bootstra
 import SearchBar from "../templates/searchBar/SearchBar";
 import { PacientsContext } from "../contextos/pacientsContext";
 import SelectionBox from "../templates/selectionBox/SelectionBox.jsx";
+import { redirect } from "react-router-dom";
 
 
 
 export default function Medicines(props) {
 
-    const url = "https://back-fsii.vercel.app/cadastroRemedio/medicines"
+    const url = "https://back-fsii.vercel.app/cadastroRemedio/medicines";
 
     const { pacients } = useContext(PacientsContext)
     const [objectSelected, setObjectSelected] = useState('');
@@ -32,7 +33,8 @@ export default function Medicines(props) {
                 setMedicine({ ...props.medicineEditing });
 
                 if (!window.confirm('Deseja adicionar mais alguma medicação? Clique OK pra SIM, CANCEL pra NÃO')) {
-                    window.location.href = 'https://vocal-granita-13bfe9.netlify.app';
+                    /* window.location.href = 'https://vocal-granita-13bfe9.netlify.app'; */
+                    redirect('/cadastroPacientes');                   
                 }
             }
             return await response.json()
