@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 export default function Medicines(props) {
 
     const url = "https://back-fsii.vercel.app/cadastroRemedio/medicines";
+    const navigate = useNavigate();
 
     const { pacients } = useContext(PacientsContext)
     const [objectSelected, setObjectSelected] = useState('');
@@ -21,7 +22,7 @@ export default function Medicines(props) {
 
     const handleSubmit = (e) => {
         /* falta implementar */
-        const navigate = useNavigate();
+      
         handleBar(medicine)
         console.log({ ...medicine })
         fetch(url, {
