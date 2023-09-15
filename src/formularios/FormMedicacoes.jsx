@@ -22,6 +22,7 @@ export default function Medicines(props) {
     console.log(props.location.state)
     if (props.location.state) {
         setMedicine({
+            ...medicine,
             id: props.location.state.id,
             medicineName: props.location.state.medicineName,
             medicineDosage: props.location.state.medicineDosage,
