@@ -23,7 +23,7 @@ export default function Medicines(props) {
 
     useEffect(() => {
 
-        console.log(props.location, `${props.location.state[1]}`)
+        console.log(props.location, props.location.state[1])
 
         if (props.location.state) {
 
