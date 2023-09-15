@@ -25,11 +25,10 @@ export default function Medicines(props) {
         console.log(props.location)
 
         if (props.location.state) {
-            setObjectSelected({
-                id: props.location.pacient,
-            })
+            
             setMedicine({
                 ...medicine,
+                pacientName: props.location.state[1],
                 medicineName: props.location.state.medicineName,
                 medicineDosage: props.location.state.medicineDosage,
                 medicineHours: props.location.state.medicineHours,
