@@ -9,7 +9,6 @@ function TableMedicines(props) {
 
     const url = `https://back-fsii.vercel.app/cadastroRemedio/medicines`;
     const navigate = useNavigate();
-    const location = useLocation();
     const myHeaders = new Headers();
     myHeaders.append("Content-type", "application/json");
 
@@ -103,7 +102,7 @@ function TableMedicines(props) {
                                     </Button>
                                     {' '}
                                     <Button onClick={() => {
-                                        navigate('/cadastroMedicacoes', { state: medicine, pacient: props.pacient })
+                                        navigate('/cadastroMedicacoes', { state: [medicine, props.pacient] })
                                     }}>Editar</Button>
                                 </td>
                             </tr>
