@@ -37,9 +37,7 @@ export default function TelaCadMedicacoes(props) {
             medicineDateEnd: location.state,
             medicineObservation: location.state
         })
-    } else {
-
-    }
+    } 
 
 
 
