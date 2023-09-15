@@ -23,16 +23,7 @@ export default function TelaCadMedicacoes(props) {
         medicineObservation: ""
     })
 
-    if (location.state) {
-        console.log(location.state)
-        setMedicineEditing(
-            location.state
-        )
-    }
-
-
-
-
+  
 
     return (
         <Pagina>
