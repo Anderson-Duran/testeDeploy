@@ -19,14 +19,15 @@ export default function Medicines(props) {
     const [medicine, setMedicine] = useState({
         ...props.medicineEditing,
     })
-    console.log(props.location.state)
 
     useEffect(() => {
-        
+
         if (props.location.state) {
+            setObjectSelected({
+                id: props.location.state.id,
+            })
             setMedicine({
                 ...medicine,
-                id: props.location.state.id,
                 medicineName: props.location.state.medicineName,
                 medicineDosage: props.location.state.medicineDosage,
                 medicineHours: props.location.state.medicineHours,
