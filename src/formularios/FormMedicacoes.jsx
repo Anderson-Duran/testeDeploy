@@ -30,7 +30,7 @@ export default function Medicines(props) {
 
             setMedicine({
                 ...medicine,
-                pacientName: props.location.state[1],
+                pacientName: {...props.location.state[1]},
                 medicineName: props.location.state[0].medicineName,
                 medicineDosage: props.location.state[0].medicineDosage,
                 medicineHours: props.location.state[0].medicineHours,
