@@ -30,14 +30,14 @@ export default function Medicines(props) {
             setMedicine({
                 ...medicine,
                 pacientName: props.location.state[1],
-                medicineName: props.location.state.medicineName,
-                medicineDosage: props.location.state.medicineDosage,
-                medicineHours: props.location.state.medicineHours,
-                medicineHours2: props.location.state.medicineHours2,
-                medicineHours3: props.location.state.medicineHours3,
-                medicineDateStart: props.location.state.medicineDateStart,
-                medicineDateEnd: props.location.state.medicineDateEnd,
-                medicineObservation: props.location.state.medicineObservation
+                medicineName: props.location.state[0].medicineName,
+                medicineDosage: props.location.state[0].medicineDosage,
+                medicineHours: props.location.state[0].medicineHours,
+                medicineHours2: props.location.state[0].medicineHours2,
+                medicineHours3: props.location.state[0].medicineHours3,
+                medicineDateStart: props.location.state[0].medicineDateStart,
+                medicineDateEnd: props.location.state[0].medicineDateEnd,
+                medicineObservation: props.location.state[0].medicineObservation
             });
             setIsEditing(!isEditing);
         }
