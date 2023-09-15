@@ -3,16 +3,23 @@ import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 function TableMedicines(props) {
 
     const url = `https://back-fsii.vercel.app/cadastroRemedio/medicines`;
     const navigate = useNavigate();
+    const location = useLocation();
     const myHeaders = new Headers();
     myHeaders.append("Content-type", "application/json");
- 
 
+    if (location.state) {
+        const [medicineList, setMedicineList] = useState([]);
+        setMedicineList(...location.state.medicine);
+        console.log(medicineList);
+    }
     const [medicineList, setMedicineList] = useState([]);
+
     const [updateList, setUpdateList] = useState(false)
 
 
@@ -100,7 +107,7 @@ function TableMedicines(props) {
                                     >Excluir
                                     </Button>
                                     {' '}
-                                    <Button onClick={()=>{
+                                    <Button onClick={() => {
                                         let data = [medicine, props.pacient]
                                         navigate('/cadastroRemedio', data)
                                     }}>Editar</Button>
