@@ -12,9 +12,9 @@ export default function TelaCadMedicacoes(props) {
     console.log(location.state)
 
     if (location.state) {
-        const [objectSelected, setObjectSelected] = useState(...location.state.props.pacient)
+        const [objectSelected, setObjectSelected] = useState({ id, cpf } = location.state)
         const [medicineEditing, setMedicineEditing] = useState({
-            pacientName: objectSelected,...location.state.medicine
+            ...location.state.medicine
         })
     }
 
