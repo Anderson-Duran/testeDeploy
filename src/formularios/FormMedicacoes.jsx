@@ -26,24 +26,26 @@ export default function Medicines(props) {
         console.log(props.location, props.location.state[1])
 
         if (props.location.state) {
+            async () => {
+                await setMedicine({
+                    ...medicine,
+                    pacientName: props.location.state[1],
+                    medicineName: props.location.state[0].medicineName,
+                    medicineDosage: props.location.state[0].medicineDosage,
+                    medicineHours: props.location.state[0].medicineHours,
+                    medicineHours2: props.location.state[0].medicineHours2,
+                    medicineHours3: props.location.state[0].medicineHours3,
+                    medicineDateStart: props.location.state[0].medicineDateStart,
+                    medicineDateEnd: props.location.state[0].medicineDateEnd,
+                    medicineObservation: props.location.state[0].medicineObservation
+                });
+                await setIsEditing(!isEditing);
+            }
 
-            setMedicine({
-                ...medicine,
-                pacientName: props.location.state[1],
-                medicineName: props.location.state[0].medicineName,
-                medicineDosage: props.location.state[0].medicineDosage,
-                medicineHours: props.location.state[0].medicineHours,
-                medicineHours2: props.location.state[0].medicineHours2,
-                medicineHours3: props.location.state[0].medicineHours3,
-                medicineDateStart: props.location.state[0].medicineDateStart,
-                medicineDateEnd: props.location.state[0].medicineDateEnd,
-                medicineObservation: props.location.state[0].medicineObservation
-            });
-            setIsEditing(!isEditing);
         }
 
 
-        console.log(medicine)
+        console.log(medicine, isEditing)
     }, [props.location.state])
 
 
