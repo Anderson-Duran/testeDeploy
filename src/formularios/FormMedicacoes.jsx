@@ -15,6 +15,7 @@ export default function Medicines(props) {
 
     const { pacients } = useContext(PacientsContext)
     const [objectSelected, setObjectSelected] = useState('');
+    const [isEditing, setIsEditing] = useState(false);
     const [medName, setMedName] = useState('')
     const [medicine, setMedicine] = useState({
         ...props.medicineEditing,
@@ -22,10 +23,10 @@ export default function Medicines(props) {
 
     useEffect(() => {
 
-        console.log(props.location,`lista pos 1 ${props.location.state[1]}`)
+        console.log(props.location, `lista pos 1 ${props.location.state[1]}`)
 
         if (props.location.state) {
-            
+            setIsEditing(!isEditing);
             setMedicine({
                 ...medicine,
                 pacientName: props.location.state[1],
@@ -50,22 +51,40 @@ export default function Medicines(props) {
 
         handleBar(medicine)
         console.log({ ...medicine })
-        fetch(url, {
-            method: "POST",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify({ ...medicine })
-        }).then(async (response) => {
-            if (response.ok) {
 
-                setMedicine({ ...props.medicineEditing });
+        isEditing ?
+            (
+                fetch(url, {
+                    method: "PUT",
+                    headers: { "Content-type": "application/json" },
+                    body: JSON.stringify({ ...medicine })
+                }).then(async (response) => {
+                    if (response.ok) {
+                        console.log(response.status(200))
+                    }
+                })
+            )
+            :
+            (
+                fetch(url, {
+                    method: "POST",
+                    headers: { "Content-type": "application/json" },
+                    body: JSON.stringify({ ...medicine })
+                }).then(async (response) => {
+                    if (response.ok) {
 
-                if (!window.confirm('Deseja adicionar mais alguma medicação? Clique OK pra SIM, CANCEL pra NÃO')) {
-                    /* window.location.href = 'https://vocal-granita-13bfe9.netlify.app'; */
-                    navigate('/cadastroPacientes');
-                }
-            }
-            return await response.json()
-        }).then(data => console.log(data))
+                        setMedicine({ ...props.medicineEditing });
+
+                        if (!window.confirm('Deseja adicionar mais alguma medicação? Clique OK pra SIM, CANCEL pra NÃO')) {
+                            /* window.location.href = 'https://vocal-granita-13bfe9.netlify.app'; */
+                            navigate('/cadastroPacientes');
+                        }
+                    }
+                    return await response.json()
+                }).then(data => console.log(data))
+            )
+
+
 
 
 
@@ -238,7 +257,7 @@ export default function Medicines(props) {
                 </Row>
 
                 <Row className="mb-5 flex bg-red justify-content-end me-2">
-                    <Button className="btn" style={{ width: "100px", marginRight: '15px' }} type="submit" variant="primary">Cadastrar</Button>
+                    <Button className="btn" style={{ width: "100px", marginRight: '15px' }} type="submit" variant="primary">{isEditing ? "Atualizar" : "Cadastrar"}</Button>
                     <Button className="btn" style={{ width: "100px" }} onClick={() => { navigate('/') }} variant="primary">Voltar</Button>
                 </Row>
             </Form>
