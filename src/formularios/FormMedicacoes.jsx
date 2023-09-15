@@ -5,7 +5,7 @@ import SearchBar from "../templates/searchBar/SearchBar";
 import { PacientsContext } from "../contextos/pacientsContext";
 import SelectionBox from "../templates/selectionBox/SelectionBox.jsx";
 import { useNavigate } from "react-router-dom";
-import Spinner from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
 
 
 
