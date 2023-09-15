@@ -28,8 +28,6 @@ export default function Medicines(props) {
 
         if (props.location.state) {
 
-            document.querySelector('#searchBar').style.display = 'none';
-
             setMedicine({
                 ...medicine,
                 pacientName: props.location.state[1],
@@ -152,6 +150,7 @@ export default function Medicines(props) {
                                 dataKey={"id"}
                                 exhibitionField={"name"}
                                 selectFunction={setMedName}
+                                style={isEditing?{display:'none'}:''}
                             />
                         </Form.Group>
                         <Form.Group as={Col} md={6} controlId="medicineDosage">
