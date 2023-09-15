@@ -20,6 +20,11 @@ export default function Medicines(props) {
         ...props.medicineEditing
     })
 
+    if(props.location.status){
+        setMedicine(props.location.status)
+        console.log(medicine)
+    }
+
     const handleSubmit = (e) => {
         /* falta implementar */
       
