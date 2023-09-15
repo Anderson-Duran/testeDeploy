@@ -13,18 +13,29 @@ export default function TelaCadMedicacoes(props) {
     const [objectSelected, setObjectSelected] = useState({})
     const [medicineEditing, setMedicineEditing] = useState({
         pacientName: objectSelected,
-        medicineName: location.state.medicineName,
-        medicineDosage: location.state.medicineDosage,
-        medicineHours: location.state.medicineHours,
-        medicineHours2: location.state.medicineHours2,
-        medicineHours3: location.state.medicineHours3,
-        medicineDateStart: location.state.medicineDateStart,
-        medicineDateEnd: location.state.medicineDateEnd,
-        medicineObservation: location.state.medicineObservation
+        medicineName: "",
+        medicineDosage: "",
+        medicineHours: "",
+        medicineHours2: "",
+        medicineHours3: "",
+        medicineDateStart: "",
+        medicineDateEnd: "",
+        medicineObservation: ""
     })
 
     if (location.state) {
-        setMedicineEditing({ id: location.state.id })
+        setMedicineEditing({
+            ...medicineEditing,
+            id: location.state.id,
+            medicineName: location.state.medicineName,
+            medicineDosage: location.state.medicineDosage,
+            medicineHours: location.state.medicineHours,
+            medicineHours2: location.state.medicineHours2,
+            medicineHours3: location.state.medicineHours3,
+            medicineDateStart: location.state.medicineDateStart,
+            medicineDateEnd: location.state.medicineDateEnd,
+            medicineObservation: location.state.medicineObservation
+        })
     }
 
 
