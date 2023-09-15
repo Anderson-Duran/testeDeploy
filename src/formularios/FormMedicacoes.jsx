@@ -28,7 +28,7 @@ export default function Medicines(props) {
 
         if (props.location.state) {
 
-            document.querySelector('')
+            document.querySelector('#searchBar').style.display = 'none'
 
             setMedicine({
                 ...medicine,
