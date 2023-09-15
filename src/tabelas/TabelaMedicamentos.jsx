@@ -13,13 +13,8 @@ function TableMedicines(props) {
     const myHeaders = new Headers();
     myHeaders.append("Content-type", "application/json");
 
-    if (location.state) {
-        const [medicineList, setMedicineList] = useState([]);
-        setMedicineList(...location.state.medicine);
-        console.log(medicineList);
-    }
+    
     const [medicineList, setMedicineList] = useState([]);
-
     const [updateList, setUpdateList] = useState(false)
 
 
@@ -109,7 +104,7 @@ function TableMedicines(props) {
                                     {' '}
                                     <Button onClick={() => {
                                         let data = [medicine, props.pacient]
-                                        navigate('/cadastroRemedio', data)
+                                        navigate('/cadastroMedicacoes', data)
                                     }}>Editar</Button>
                                 </td>
                             </tr>
