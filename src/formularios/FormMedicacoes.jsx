@@ -44,7 +44,7 @@ export default function Medicines(props) {
 
 
         console.log(medicine)
-    }, [])
+    }, [props.location.state])
 
 
     const handleSubmit = (e) => {
