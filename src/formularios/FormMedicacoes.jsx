@@ -115,6 +115,7 @@ export default function Medicines(props) {
 
     return (
         <>
+        
             {
                 medicine.medicineName === '' ? (
                     <Spinner style={{width:'100vw', height:'100vh', backgroundColor:'rgba(0,0,0,.2)'}}/>
