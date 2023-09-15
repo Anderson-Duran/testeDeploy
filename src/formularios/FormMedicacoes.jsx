@@ -27,6 +27,9 @@ export default function Medicines(props) {
         console.log(props.location, props.location.state[1])
 
         if (props.location.state) {
+
+            document.querySelector('')
+
             setMedicine({
                 ...medicine,
                 pacientName: props.location.state[1],
@@ -61,11 +64,10 @@ export default function Medicines(props) {
                     body: JSON.stringify({ ...medicine })
                 }).then(async (response) => {
                     if (response.ok) {
-                        console.log(response.json({
-                            message:"Medicine Updated"
-                        }))
+                        setMedicine({ ...props.medicineEditing });
                     }
-                })
+                    return await response.json()
+                }).then(data => console.log(data))
             )
             :
             (
@@ -124,6 +126,7 @@ export default function Medicines(props) {
                     <Form.Group as={Col} md={12} className="m-auto mb-3" >
                         <Form.Label>Paciente</Form.Label>
                         <SearchBar
+                            id='searchBar'
                             selectFunction={setObjectSelected}
                             data={pacients}
                             placeholder={'Informe o nome do paciente'}
