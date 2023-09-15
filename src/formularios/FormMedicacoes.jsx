@@ -24,7 +24,7 @@ export default function Medicines(props) {
 
     useEffect(() => {
 
-        console.log(props.location, props.location.state[1])
+       
 
         if (props.location.state) {
             console.log('location', location.state)
@@ -44,8 +44,6 @@ export default function Medicines(props) {
             setIsEditing(!isEditing);
         }
 
-
-        console.log(medicine)
     }, [props.location.state])
 
 
