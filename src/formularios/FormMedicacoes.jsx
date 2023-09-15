@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactInputMask from "react-input-mask";
 import { Container, Form, Row, Col, FloatingLabel, Button } from "react-bootstrap";
 import SearchBar from "../templates/searchBar/SearchBar";
@@ -20,23 +20,28 @@ export default function Medicines(props) {
         ...props.medicineEditing,
     })
     console.log(props.location.state)
-    if (props.location.state) {
-        setMedicine({
-            ...medicine,
-            id: props.location.state.id,
-            medicineName: props.location.state.medicineName,
-            medicineDosage: props.location.state.medicineDosage,
-            medicineHours: props.location.state.medicineHours,
-            medicineHours2: props.location.state.medicineHours2,
-            medicineHours3: props.location.state.medicineHours3,
-            medicineDateStart: props.location.state.medicineDateStart,
-            medicineDateEnd: props.location.state.medicineDateEnd,
-            medicineObservation: props.location.state.medicineObservation
-        })
-    }
+
+    useEffect(() => {
+        
+        if (props.location.state) {
+            setMedicine({
+                ...medicine,
+                id: props.location.state.id,
+                medicineName: props.location.state.medicineName,
+                medicineDosage: props.location.state.medicineDosage,
+                medicineHours: props.location.state.medicineHours,
+                medicineHours2: props.location.state.medicineHours2,
+                medicineHours3: props.location.state.medicineHours3,
+                medicineDateStart: props.location.state.medicineDateStart,
+                medicineDateEnd: props.location.state.medicineDateEnd,
+                medicineObservation: props.location.state.medicineObservation
+            })
+        }
 
 
-    console.log(medicine)
+        console.log(medicine)
+    }, [])
+
 
     const handleSubmit = (e) => {
         /* falta implementar */
