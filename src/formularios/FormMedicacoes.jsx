@@ -27,10 +27,11 @@ export default function Medicines(props) {
         console.log(props.location, props.location.state[1])
 
         if (props.location.state) {
-
+            console.log('location', location.state)
             setMedicine({
                 ...medicine,
                 pacientName: { ...props.location.state[1] },
+                id: props.location.state[0].id,
                 medicineName: props.location.state[0].medicineName,
                 medicineDosage: props.location.state[0].medicineDosage,
                 medicineHours: props.location.state[0].medicineHours,
@@ -118,7 +119,7 @@ export default function Medicines(props) {
                 medicine.pacientName = props.location.state[1]
             )
             setMedicine(
-                medicine.medicineName = medName
+                medicine.medicineName = props.location.state[0].medicineName
             )
         }
 
