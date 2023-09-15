@@ -9,7 +9,7 @@ export default function TelaCadMedicacoes(props) {
 
 
     const location = useLocation();
-    
+
 
     if (location.state) {
         console.log(location.state)
@@ -25,20 +25,22 @@ export default function TelaCadMedicacoes(props) {
             medicineDateEnd: location.state,
             medicineObservation: location.state
         })
+    } else {
+        const [objectSelected, setObjectSelected] = useState({})
+        const [medicineEditing, setMedicineEditing] = useState({
+            pacientName: objectSelected,
+            medicineName: "",
+            medicineDosage: "",
+            medicineHours: "",
+            medicineHours2: "",
+            medicineHours3: "",
+            medicineDateStart: "",
+            medicineDateEnd: "",
+            medicineObservation: ""
+        })
     }
 
-    const [objectSelected, setObjectSelected] = useState({})
-    const [medicineEditing, setMedicineEditing] = useState({
-        pacientName: objectSelected,
-        medicineName: "",
-        medicineDosage: "",
-        medicineHours: "",
-        medicineHours2: "",
-        medicineHours3: "",
-        medicineDateStart: "",
-        medicineDateEnd: "",
-        medicineObservation: ""
-    })
+
 
 
     return (
