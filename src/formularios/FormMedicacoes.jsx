@@ -125,7 +125,7 @@ export default function Medicines(props) {
                         placeholder={'Informe o nome do paciente'}
                         keyField={'cpf'}
                         searchField={'name'}
-                        value={isEditing ? props.location.status[1] : objectSelected}
+                        value={isEditing ? props.location.state[1] : objectSelected}
                     />
                 </Form.Group>
                 <Row className="mb-3">
