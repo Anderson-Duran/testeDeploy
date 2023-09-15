@@ -114,175 +114,168 @@ export default function Medicines(props) {
 
 
     return (
-        <>
-        
-            {
-                medicine.medicineName === '' ? (
-                    <Spinner style={{width:'100vw', height:'100vh', backgroundColor:'rgba(0,0,0,.2)'}}/>
-                ) : (
-                    <Container className="" >
-                        <Form onSubmit={handleSubmit} >
-                            <hr />
-                            <Form.Group as={Col} md={12} className="m-auto mb-3" >
-                                <Form.Label>Paciente</Form.Label>
-                                <SearchBar
-                                    selectFunction={setObjectSelected}
-                                    data={pacients}
-                                    placeholder={'Informe o nome do paciente'}
-                                    keyField={'cpf'}
-                                    searchField={'name'}
-                                    value={isEditing ? props.location.state[1] : objectSelected}
-                                />
-                            </Form.Group>
-                            <Row className="mb-3">
 
-                                <Form.Group as={Col} md={6} controlId="medicineName">
-                                    <Form.Label>
-                                        Nome da Medicação
-                                    </Form.Label>
-                                    {/* <Form.Control
+        <Container className="" >
+            {medicine.medicineName === '' ? <Spinner /> :
+                <Form onSubmit={handleSubmit} >
+                    <hr />
+                    <Form.Group as={Col} md={12} className="m-auto mb-3" >
+                        <Form.Label>Paciente</Form.Label>
+                        <SearchBar
+                            selectFunction={setObjectSelected}
+                            data={pacients}
+                            placeholder={'Informe o nome do paciente'}
+                            keyField={'cpf'}
+                            searchField={'name'}
+                            value={isEditing ? props.location.state[1] : objectSelected}
+                        />
+                    </Form.Group>
+                    <Row className="mb-3">
+
+                        <Form.Group as={Col} md={6} controlId="medicineName">
+                            <Form.Label>
+                                Nome da Medicação
+                            </Form.Label>
+                            {/* <Form.Control
                             placeholder="Ex: Amoxicilina"
                             value={medicine.medicineName}
                             required
                             onChange={handleChange}
                         /> */}
-                                    <SelectionBox
-                                        source={"https://back-fsii.vercel.app/listaRemedios/"}
-                                        dataKey={"id"}
-                                        exhibitionField={"name"}
-                                        selectFunction={setMedName}
+                            <SelectionBox
+                                source={"https://back-fsii.vercel.app/listaRemedios/"}
+                                dataKey={"id"}
+                                exhibitionField={"name"}
+                                selectFunction={setMedName}
+                            />
+                        </Form.Group>
+                        <Form.Group as={Col} md={6} controlId="medicineDosage">
+                            <Form.Label>
+                                Dosagem
+                            </Form.Label>
+                            <Form.Control
+                                placeholder="Ex:1/2 Comprimido"
+                                value={medicine.medicineDosage}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+
+                    </Row>
+                    <Row>
+
+                        <Form.Group as={Col} md={2} controlId="medicineHours">
+                            <Form.Label>
+                                1º Horário
+                            </Form.Label>
+                            <ReactInputMask
+                                mask={"99:99"}
+                                value={medicine.medicineHours}
+                                onChange={handleChange}
+                                required
+                            >
+                                {(inputProps) => <Form.Control
+                                    placeholder="Ex: 07:00"
+                                    {...inputProps}
+                                />
+                                }
+                            </ReactInputMask>
+                        </Form.Group>
+
+                        <Form.Group as={Col} md={2} controlId="medicineHours2">
+                            <Form.Label>
+                                2º Horario
+                            </Form.Label>
+                            <ReactInputMask
+                                value={medicine.medicineHours2}
+                                onChange={handleChange}
+                                mask={"99:99"}
+                            >
+                                {
+                                    (inputProps) => <Form.Control
+                                        placeholder="Ex: 15:00"
+                                        {...inputProps}
                                     />
-                                </Form.Group>
-                                <Form.Group as={Col} md={6} controlId="medicineDosage">
-                                    <Form.Label>
-                                        Dosagem
-                                    </Form.Label>
-                                    <Form.Control
-                                        placeholder="Ex:1/2 Comprimido"
-                                        value={medicine.medicineDosage}
-                                        onChange={handleChange}
-                                        required
+                                }
+
+                            </ReactInputMask>
+                        </Form.Group>
+
+                        <Form.Group as={Col} md={2} controlId="medicineHours3">
+                            <Form.Label>
+                                3º Horário
+                            </Form.Label>
+                            <ReactInputMask
+                                mask={'99:99'}
+                                value={medicine.medicineHours3}
+                                onChange={handleChange}
+                            >
+                                {
+                                    (inputProps) => <Form.Control
+                                        placeholder="Ex: 23:00"
+                                        {...inputProps}
                                     />
-                                </Form.Group>
+                                }
+                            </ReactInputMask>
+                        </Form.Group>
 
-                            </Row>
-                            <Row>
+                        <Form.Group as={Col} md={3} controlId="medicineDateStart">
+                            <Form.Label>
+                                Data Inicio
+                            </Form.Label>
+                            <Form.Control
+                                type="date"
+                                value={medicine.medicineDateStart}
+                                required
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                        <Form.Group as={Col} md={3} controlId="medicineDateEnd">
+                            <Form.Label>
+                                Data Fim
+                            </Form.Label>
+                            <Form.Control
+                                type="date"
+                                value={medicine.medicineDateEnd}
+                                required
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                    </Row>
+                    <Row>
+                        <Form.Group as={Col} md={12} className="mt-5 mb-5">
 
-                                <Form.Group as={Col} md={2} controlId="medicineHours">
-                                    <Form.Label>
-                                        1º Horário
-                                    </Form.Label>
-                                    <ReactInputMask
-                                        mask={"99:99"}
-                                        value={medicine.medicineHours}
-                                        onChange={handleChange}
-                                        required
-                                    >
-                                        {(inputProps) => <Form.Control
-                                            placeholder="Ex: 07:00"
-                                            {...inputProps}
-                                        />
-                                        }
-                                    </ReactInputMask>
-                                </Form.Group>
+                            <FloatingLabel label="Digite aqui suas observações">
+                                <Form.Control
+                                    id="medicineObservation"
+                                    as="textarea"
+                                    value={medicine.medicineObservation}
+                                    onChange={handleChange}
+                                    placeholder="Digite aqui suas observações"
+                                    style={{ height: '100px' }}
+                                />
+                            </FloatingLabel>
 
-                                <Form.Group as={Col} md={2} controlId="medicineHours2">
-                                    <Form.Label>
-                                        2º Horario
-                                    </Form.Label>
-                                    <ReactInputMask
-                                        value={medicine.medicineHours2}
-                                        onChange={handleChange}
-                                        mask={"99:99"}
-                                    >
-                                        {
-                                            (inputProps) => <Form.Control
-                                                placeholder="Ex: 15:00"
-                                                {...inputProps}
-                                            />
-                                        }
+                        </Form.Group>
+                    </Row>
 
-                                    </ReactInputMask>
-                                </Form.Group>
-
-                                <Form.Group as={Col} md={2} controlId="medicineHours3">
-                                    <Form.Label>
-                                        3º Horário
-                                    </Form.Label>
-                                    <ReactInputMask
-                                        mask={'99:99'}
-                                        value={medicine.medicineHours3}
-                                        onChange={handleChange}
-                                    >
-                                        {
-                                            (inputProps) => <Form.Control
-                                                placeholder="Ex: 23:00"
-                                                {...inputProps}
-                                            />
-                                        }
-                                    </ReactInputMask>
-                                </Form.Group>
-
-                                <Form.Group as={Col} md={3} controlId="medicineDateStart">
-                                    <Form.Label>
-                                        Data Inicio
-                                    </Form.Label>
-                                    <Form.Control
-                                        type="date"
-                                        value={medicine.medicineDateStart}
-                                        required
-                                        onChange={handleChange}
-                                    />
-                                </Form.Group>
-                                <Form.Group as={Col} md={3} controlId="medicineDateEnd">
-                                    <Form.Label>
-                                        Data Fim
-                                    </Form.Label>
-                                    <Form.Control
-                                        type="date"
-                                        value={medicine.medicineDateEnd}
-                                        required
-                                        onChange={handleChange}
-                                    />
-                                </Form.Group>
-                            </Row>
-                            <Row>
-                                <Form.Group as={Col} md={12} className="mt-5 mb-5">
-
-                                    <FloatingLabel label="Digite aqui suas observações">
-                                        <Form.Control
-                                            id="medicineObservation"
-                                            as="textarea"
-                                            value={medicine.medicineObservation}
-                                            onChange={handleChange}
-                                            placeholder="Digite aqui suas observações"
-                                            style={{ height: '100px' }}
-                                        />
-                                    </FloatingLabel>
-
-                                </Form.Group>
-                            </Row>
-
-                            <Row className="mb-5 flex bg-red justify-content-end me-2">
-                                <Button
-                                    className="btn"
-                                    style={{ width: "100px", marginRight: '15px' }}
-                                    type="submit"
-                                    variant="primary">{isEditing ? "Atualizar" : "Cadastrar"}
-                                </Button>
-                                <Button
-                                    className="btn"
-                                    style={{ width: "100px" }}
-                                    onClick={() => {
-                                        navigate('/')
-                                    }}
-                                    variant="primary">Voltar
-                                </Button>
-                            </Row>
-                        </Form>
-                    </Container>
-                )
-            }
-        </>
+                    <Row className="mb-5 flex bg-red justify-content-end me-2">
+                        <Button
+                            className="btn"
+                            style={{ width: "100px", marginRight: '15px' }}
+                            type="submit"
+                            variant="primary">{isEditing ? "Atualizar" : "Cadastrar"}
+                        </Button>
+                        <Button
+                            className="btn"
+                            style={{ width: "100px" }}
+                            onClick={() => {
+                                navigate('/')
+                            }}
+                            variant="primary">Voltar
+                        </Button>
+                    </Row>
+                </Form>}
+        </Container>
     )
 }
