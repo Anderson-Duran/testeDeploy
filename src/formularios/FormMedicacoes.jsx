@@ -61,7 +61,9 @@ export default function Medicines(props) {
                     body: JSON.stringify({ ...medicine })
                 }).then(async (response) => {
                     if (response.ok) {
-                        console.log(response.status(200))
+                        console.log(response.json({
+                            message:"Medicine Updated"
+                        }))
                     }
                 })
             )
