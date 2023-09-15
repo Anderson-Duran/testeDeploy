@@ -2,10 +2,12 @@ import '../templates/modal/style.css'
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
+import { useNavigate } from 'react-router-dom';
 
 function TableMedicines(props) {
 
     const url = `https://back-fsii.vercel.app/cadastroRemedio/medicines`;
+    const navigate = useNavigate();
     const myHeaders = new Headers();
     myHeaders.append("Content-type", "application/json");
  
@@ -98,7 +100,10 @@ function TableMedicines(props) {
                                     >Excluir
                                     </Button>
                                     {' '}
-                                    <Button>Editar</Button>
+                                    <Button onClick={()=>{
+                                        let data = [medicine, props.pacient]
+                                        navigate('/cadastroRemedio', data)
+                                    }}>Editar</Button>
                                 </td>
                             </tr>
                         )
