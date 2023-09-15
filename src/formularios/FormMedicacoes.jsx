@@ -17,17 +17,23 @@ export default function Medicines(props) {
     const [objectSelected, setObjectSelected] = useState('');
     const [medName, setMedName] = useState('')
     const [medicine, setMedicine] = useState({
-        ...props.medicineEditing
+        ...props.medicineEditing,
+        id: props.location.state.id,
+        medicineName: props.location.state.medicineName,
+        medicineDosage: props.location.state.medicineDosage,
+        medicineHours: props.location.state.medicineHours,
+        medicineHours2: props.location.state.medicineHours2,
+        medicineHours3: props.location.state.medicineHours3,
+        medicineDateStart: props.location.state.medicineDateStart,
+        medicineDateEnd: props.location.state.medicineDateEnd,
+        medicineObservation: props.location.state.medicineObservation
     })
 
-    if(props.location.status){
-        setMedicine(props.location.status)
-        console.log(medicine)
-    }
+    console.log(medicine)
 
     const handleSubmit = (e) => {
         /* falta implementar */
-      
+
         handleBar(medicine)
         console.log({ ...medicine })
         fetch(url, {
@@ -41,7 +47,7 @@ export default function Medicines(props) {
 
                 if (!window.confirm('Deseja adicionar mais alguma medicação? Clique OK pra SIM, CANCEL pra NÃO')) {
                     /* window.location.href = 'https://vocal-granita-13bfe9.netlify.app'; */
-                    navigate('/cadastroPacientes');                   
+                    navigate('/cadastroPacientes');
                 }
             }
             return await response.json()
@@ -219,7 +225,7 @@ export default function Medicines(props) {
 
                 <Row className="mb-5 flex bg-red justify-content-end me-2">
                     <Button className="btn" style={{ width: "100px", marginRight: '15px' }} type="submit" variant="primary">Cadastrar</Button>
-                    <Button className="btn" style={{ width: "100px" }} onClick={()=>{navigate('/')}} variant="primary">Voltar</Button>
+                    <Button className="btn" style={{ width: "100px" }} onClick={() => { navigate('/') }} variant="primary">Voltar</Button>
                 </Row>
             </Form>
         </Container>
