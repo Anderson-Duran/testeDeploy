@@ -12,34 +12,35 @@ export default function TelaCadMedicacoes(props) {
     const [objectSelected, setObjectSelected] = useState({});
     const [medicineEditing, setMedicineEditing] = useState({});
 
+    try {
+        if (location.state) {
+            console.log(location.state)
+            setMedicineEditing({
+                pacientName: location.state.id,
+                medicineName: location.state,
+                medicineDosage: location.state,
+                medicineHours: location.state,
+                medicineHours2: location.state,
+                medicineHours3: location.state,
+                medicineDateStart: location.state,
+                medicineDateEnd: location.state,
+                medicineObservation: location.state
+            })
+        } else {
 
-    if (location.state) {
-        console.log(location.state, location.state.id)
-        setObjectSelected(location.state.id)
-        setMedicineEditing({
-            pacientName: objectSelected,
-            medicineName: location.state,
-            medicineDosage: location.state,
-            medicineHours: location.state,
-            medicineHours2: location.state,
-            medicineHours3: location.state,
-            medicineDateStart: location.state,
-            medicineDateEnd: location.state,
-            medicineObservation: location.state
-        })
-    } else {
-
-        setMedicineEditing({
-            pacientName: objectSelected,
-            medicineName: "",
-            medicineDosage: "",
-            medicineHours: "",
-            medicineHours2: "",
-            medicineHours3: "",
-            medicineDateStart: "",
-            medicineDateEnd: "",
-            medicineObservation: ""
-        })
+            setMedicineEditing({
+                pacientName: objectSelected,
+                medicineName: "",
+                medicineDosage: "",
+                medicineHours: "",
+                medicineHours2: "",
+                medicineHours3: "",
+                medicineDateStart: "",
+                medicineDateEnd: "",
+                medicineObservation: ""
+            })
+    }} catch (error) {
+        console.error(error)
     }
 
 
