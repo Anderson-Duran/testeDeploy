@@ -19,6 +19,7 @@ export default function Medicines(props) {
     const [medicine, setMedicine] = useState({
         ...props.medicineEditing,
     })
+    console.log(props.location.state)
     if (props.location.state) {
         setMedicine({
             id: props.location.state.id,
