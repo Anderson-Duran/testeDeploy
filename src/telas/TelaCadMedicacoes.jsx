@@ -24,6 +24,7 @@ export default function TelaCadMedicacoes(props) {
     })
 
     if (location.state) {
+        console.log(location.state)
         setMedicineEditing({
             ...medicineEditing,
             id: location.state.id,
