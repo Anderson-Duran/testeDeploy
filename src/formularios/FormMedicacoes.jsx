@@ -26,7 +26,7 @@ export default function Medicines(props) {
         console.log(props.location, `lista pos 1 ${props.location.state[1]}`)
 
         if (props.location.state) {
-            setIsEditing(!isEditing);
+
             setMedicine({
                 ...medicine,
                 pacientName: props.location.state[1],
@@ -38,7 +38,8 @@ export default function Medicines(props) {
                 medicineDateStart: props.location.state.medicineDateStart,
                 medicineDateEnd: props.location.state.medicineDateEnd,
                 medicineObservation: props.location.state.medicineObservation
-            })
+            });
+            setIsEditing(!isEditing);
         }
 
 
@@ -257,8 +258,20 @@ export default function Medicines(props) {
                 </Row>
 
                 <Row className="mb-5 flex bg-red justify-content-end me-2">
-                    <Button className="btn" style={{ width: "100px", marginRight: '15px' }} type="submit" variant="primary">{isEditing ? "Atualizar" : "Cadastrar"}</Button>
-                    <Button className="btn" style={{ width: "100px" }} onClick={() => { navigate('/') }} variant="primary">Voltar</Button>
+                    <Button
+                        className="btn"
+                        style={{ width: "100px", marginRight: '15px' }}
+                        type="submit"
+                        variant="primary">{isEditing ? "Atualizar" : "Cadastrar"}
+                    </Button>
+                    <Button
+                        className="btn"
+                        style={{ width: "100px" }}
+                        onClick={() => {
+                            navigate('/')
+                        }}
+                        variant="primary">Voltar
+                    </Button>
                 </Row>
             </Form>
         </Container>
