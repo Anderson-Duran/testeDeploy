@@ -18,16 +18,21 @@ export default function Medicines(props) {
     const [medName, setMedName] = useState('')
     const [medicine, setMedicine] = useState({
         ...props.medicineEditing,
-        id: props.location.state.id,
-        medicineName: props.location.state.medicineName,
-        medicineDosage: props.location.state.medicineDosage,
-        medicineHours: props.location.state.medicineHours,
-        medicineHours2: props.location.state.medicineHours2,
-        medicineHours3: props.location.state.medicineHours3,
-        medicineDateStart: props.location.state.medicineDateStart,
-        medicineDateEnd: props.location.state.medicineDateEnd,
-        medicineObservation: props.location.state.medicineObservation
     })
+    if (props.location.state) {
+        setMedicine({
+            id: props.location.state.id,
+            medicineName: props.location.state.medicineName,
+            medicineDosage: props.location.state.medicineDosage,
+            medicineHours: props.location.state.medicineHours,
+            medicineHours2: props.location.state.medicineHours2,
+            medicineHours3: props.location.state.medicineHours3,
+            medicineDateStart: props.location.state.medicineDateStart,
+            medicineDateEnd: props.location.state.medicineDateEnd,
+            medicineObservation: props.location.state.medicineObservation
+        })
+    }
+
 
     console.log(medicine)
 
