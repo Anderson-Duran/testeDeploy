@@ -103,7 +103,7 @@ function TableMedicines(props) {
                                     </Button>
                                     {' '}
                                     <Button onClick={() => {
-                                        navigate('/cadastroMedicacoes', { state: medicine })
+                                        navigate('/cadastroMedicacoes', { state: medicine, pacient: props.pacient })
                                     }}>Editar</Button>
                                 </td>
                             </tr>

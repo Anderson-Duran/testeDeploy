@@ -22,9 +22,11 @@ export default function Medicines(props) {
 
     useEffect(() => {
 
+        console.log(props.location)
+
         if (props.location.state) {
             setObjectSelected({
-                id: props.location.state.id,
+                id: props.location.pacient,
             })
             setMedicine({
                 ...medicine,
