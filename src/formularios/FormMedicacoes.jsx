@@ -105,7 +105,7 @@ export default function Medicines(props) {
     }
 
     const handleBar = (medicine) => {
-        if (!isEditing){
+        if (!isEditing) {
             setMedicine(
                 medicine.pacientName = { ...objectSelected }
             )
@@ -113,7 +113,7 @@ export default function Medicines(props) {
                 medicine.medicineName = medName
             )
         }
-        else{
+        else {
             setMedicine(
                 medicine.pacientName = props.location.state[1]
             )
@@ -137,7 +137,8 @@ export default function Medicines(props) {
                             placeholder={'Informe o nome do paciente'}
                             keyField={'cpf'}
                             searchField={'name'}
-                            value={objectSelected}
+                            style={isEditing ? { display: 'none' } : {}}
+                            value={isEditing ? props.location.state[1] : objectSelected}
                         />
                     </Form.Group>
                     <Row className="mb-3">
@@ -157,7 +158,6 @@ export default function Medicines(props) {
                                 dataKey={"id"}
                                 exhibitionField={"name"}
                                 selectFunction={setMedName}
-                                style={isEditing?{display:'none'}:{}}
                             />
                         </Form.Group>
                         <Form.Group as={Col} md={6} controlId="medicineDosage">
