@@ -23,7 +23,6 @@ export default function TelaCadMedicacoes(props) {
         medicineObservation: ""
     })
 
-   console.log(location, location.key, location.state)
 
     return (
         <Pagina>
@@ -37,6 +36,7 @@ export default function TelaCadMedicacoes(props) {
                     medicineEditing={medicineEditing}
                     setMedicineEditing={setMedicineEditing}
                     setObject={setObjectSelected}
+                    location={location}
                 />
             </Container>
         </Pagina>
