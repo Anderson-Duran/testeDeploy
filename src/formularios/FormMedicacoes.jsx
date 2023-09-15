@@ -23,7 +23,7 @@ export default function Medicines(props) {
 
     useEffect(() => {
 
-        console.log(props.location, `lista pos 1 ${props.location.state[1]}`)
+        console.log(props.location, `${props.location.state[1]}`)
 
         if (props.location.state) {
 
@@ -125,7 +125,7 @@ export default function Medicines(props) {
                         placeholder={'Informe o nome do paciente'}
                         keyField={'cpf'}
                         searchField={'name'}
-                        value={objectSelected}
+                        value={isEditing ? props.location.status[1] : objectSelected}
                     />
                 </Form.Group>
                 <Row className="mb-3">
