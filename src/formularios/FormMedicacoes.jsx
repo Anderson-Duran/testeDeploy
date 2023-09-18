@@ -24,7 +24,7 @@ export default function Medicines(props) {
 
     useEffect(() => {
 
-       
+
 
         if (props.location.state) {
             console.log('location', location.state)
@@ -49,7 +49,7 @@ export default function Medicines(props) {
 
 
     const handleSubmit = (e) => {
-       
+
 
         handleBar(medicine)
         console.log({ ...medicine })
@@ -79,7 +79,7 @@ export default function Medicines(props) {
                         setMedicine({ ...props.medicineEditing });
 
                         if (!window.confirm('Deseja adicionar mais alguma medicação? Clique OK pra SIM, CANCEL pra NÃO')) {
-                           
+
                             navigate('/cadastroPacientes');
                         }
                     }
@@ -133,16 +133,18 @@ export default function Medicines(props) {
                     <hr />
                     <Form.Group as={Col} md={12} className="m-auto mb-3" >
                         <Form.Label>Paciente</Form.Label>
-                        <SearchBar
-                            id='searchBar'
-                            selectFunction={setObjectSelected}
-                            data={pacients}
-                            placeholder={'Informe o nome do paciente'}
-                            keyField={'cpf'}
-                            searchField={'name'}
-                            style={isEditing ? { display: 'none' } : {}}
-                            value={isEditing ? props.location.state[1] : objectSelected}
-                        />
+                        {isEditing ? <div>{props.location.state[1].name}</div> :
+                            <SearchBar
+                                id='searchBar'
+                                selectFunction={setObjectSelected}
+                                data={pacients}
+                                placeholder={'Informe o nome do paciente'}
+                                keyField={'cpf'}
+                                searchField={'name'}
+                                style={isEditing ? { display: 'none' } : {}}
+                                value={isEditing ? props.location.state[1] : objectSelected}
+                            />
+                        }
                     </Form.Group>
                     <Row className="mb-3">
 
@@ -150,7 +152,7 @@ export default function Medicines(props) {
                             <Form.Label>
                                 Nome da Medicação
                             </Form.Label>
-                           
+
                             <SelectionBox
                                 source={"https://back-fsii.vercel.app/listaRemedios/"}
                                 dataKey={"id"}
