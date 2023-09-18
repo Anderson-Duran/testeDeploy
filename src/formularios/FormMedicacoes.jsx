@@ -35,8 +35,8 @@ export default function Medicines(props) {
 
         if (isReady) {
             
-            let pacient = { ...props.location.state[1] };
-            pacient.push(props.location.state[0].id);
+            const pacient = { ...props.location.state[1] };
+            pacient.id = props.location.state[0].id;
             console.log('location', props.location.state, 'paciente', pacient)
 
             setMedicine({
