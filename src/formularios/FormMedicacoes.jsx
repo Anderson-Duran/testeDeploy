@@ -64,6 +64,7 @@ export default function Medicines(props) {
                 }).then(async (response) => {
                     if (response.ok) {
                         setMedicine({ ...props.medicineEditing });
+                        navigate('/cadastroPacientes');
                     }
                     return await response.json()
                 }).then(data => console.log(data))
