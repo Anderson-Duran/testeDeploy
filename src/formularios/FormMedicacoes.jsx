@@ -34,7 +34,7 @@ export default function Medicines(props) {
                 ...medicine,
                 pacientName: { ...props.location.state[1] },
                 id: props.location.state[0].id,
-                medicineName: '',
+                medicineName: props.location.state[0].medicineName,
                 medicineDosage: props.location.state[0].medicineDosage,
                 medicineHours: props.location.state[0].medicineHours,
                 medicineHours2: props.location.state[0].medicineHours2,
@@ -119,7 +119,7 @@ export default function Medicines(props) {
                 medicine.pacientName = props.location.state[1]
             )
             setMedicine(
-                medicine.medicineName = props.location.state[0].medicineName
+                medicine.medicineName = medName
             )
         }
 
@@ -158,7 +158,7 @@ export default function Medicines(props) {
                                 source={"https://back-fsii.vercel.app/listaRemedios/"}
                                 dataKey={"id"}
                                 exhibitionField={"name"}
-                                selectFunction={isEditing ? props.location.state[0].medicineName : setMedName}
+                                selectFunction={setMedName}
                             />
                         </Form.Group>
                         <Form.Group as={Col} md={6} controlId="medicineDosage">
