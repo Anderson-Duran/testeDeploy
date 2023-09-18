@@ -17,16 +17,28 @@ export default function Medicines(props) {
     const { pacients } = useContext(PacientsContext)
     const [objectSelected, setObjectSelected] = useState('');
     const [isEditing, setIsEditing] = useState(false);
-    const [medName, setMedName] = useState('')
+    const [medName, setMedName] = useState('');
+    const [isReady, setIsReady] = useState(false);
     const [medicine, setMedicine] = useState({
         ...props.medicineEditing,
     })
+
+
+
+    useEffect(()=>{
+        if(props.location.state){
+            setTimeout(()=>{
+                setIsReady(true)
+            },100)
+        }
+    },[props.location.state])
+
 
     useEffect(() => {
 
 
 
-        if (props.location.state) {
+        if (isReady) {
             console.log('location', location.state)
             let pacient = { ...props.location.state[1] };
             pacient.push(props.location.state[0].id)
