@@ -127,7 +127,7 @@ export default function Medicines(props) {
     return (
 
         <Container className="" >
-            {medicine.medicineName === '' ? <Spinner /> :
+            {medicine.medicineName === '' && isEditing ? <Spinner /> :
                 <Form onSubmit={handleSubmit} >
                     <hr />
                     <Form.Group as={Col} md={12} className="m-auto mb-3" >
