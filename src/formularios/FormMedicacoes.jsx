@@ -25,23 +25,19 @@ export default function Medicines(props) {
 
 
 
-    useEffect(()=>{
-        if(props.location.state){
-            setTimeout(()=>{
-                setIsReady(true)
-            },100)
-        }
-    },[props.location.state])
-
-
     useEffect(() => {
 
-
+        if (props.location.state) {
+            setTimeout(() => {
+                setIsReady(true)
+            }, 100)
+        }
 
         if (isReady) {
-            console.log('location', location.state)
+            
             let pacient = { ...props.location.state[1] };
-            pacient.push(props.location.state[0].id)
+            pacient.push(props.location.state[0].id);
+            console.log('location', props.location.state, 'paciente', pacient)
 
             setMedicine({
                 ...medicine,
@@ -58,7 +54,7 @@ export default function Medicines(props) {
             setIsEditing(!isEditing);
         }
 
-    }, [props.location.state])
+    }, [isReady, props.location.state])
 
 
     const handleSubmit = (e) => {
