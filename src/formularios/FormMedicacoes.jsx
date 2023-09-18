@@ -34,7 +34,7 @@ export default function Medicines(props) {
                 ...medicine,
                 pacientName: { ...props.location.state[1] },
                 id: props.location.state[0].id,
-                medicineName: props.location.state[0].medicineName,
+                medicineName: '',
                 medicineDosage: props.location.state[0].medicineDosage,
                 medicineHours: props.location.state[0].medicineHours,
                 medicineHours2: props.location.state[0].medicineHours2,
