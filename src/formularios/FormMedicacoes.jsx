@@ -18,7 +18,6 @@ export default function Medicines(props) {
     const [objectSelected, setObjectSelected] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const [medName, setMedName] = useState('');
-    const [isReady, setIsReady] = useState(false);
     const [medicine, setMedicine] = useState({
         ...props.medicineEditing,
     })
@@ -28,20 +27,13 @@ export default function Medicines(props) {
     useEffect(() => {
 
         if (props.location.state) {
-            setTimeout(() => {
-                setIsReady(true)
-            }, 100)
-        }
 
-        if (isReady) {
-            
-            const pacient = { ...props.location.state[1] };
-            pacient.id = props.location.state[0].id;
-            console.log('location', props.location.state, 'paciente', pacient)
+            console.log('location', props.location.state)
 
             setMedicine({
                 ...medicine,
-                pacientName: { ...pacient },
+                pacientName: { ...props.location.state[1] },
+                id: props.location.state[0].id,
                 medicineName: props.location.state[0].medicineName,
                 medicineDosage: props.location.state[0].medicineDosage,
                 medicineHours: props.location.state[0].medicineHours,
@@ -54,7 +46,7 @@ export default function Medicines(props) {
             setIsEditing(!isEditing);
         }
 
-    }, [isReady, props.location.state])
+    }, [props.location.state])
 
 
     const handleSubmit = (e) => {
